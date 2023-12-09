@@ -1,8 +1,9 @@
 import { getMovieReviews } from 'components/Api/ApiRequests';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import propTypes from 'prop-types';
 
-export const Reviews = () => {
+const Reviews = () => {
   const { id } = useParams();
   const [movieReviews, setMovieReviews] = useState([]);
 
@@ -14,10 +15,10 @@ export const Reviews = () => {
       console.log(err.message);
     }
   };
+
   useEffect(() => {
     fetchMovieCredits(id);
   }, []);
-  console.log(movieReviews);
 
   return (
     <div>
@@ -35,4 +36,15 @@ export const Reviews = () => {
       </ul>
     </div>
   );
+};
+export default Reviews;
+
+Reviews.propTypes = {
+  movieReviews: propTypes.arrayOf(
+    propTypes.shape({
+      id: propTypes.number.isRequired,
+      author: propTypes.string.isRequired,
+      content: propTypes.number.isRequired,
+    })
+  ),
 };

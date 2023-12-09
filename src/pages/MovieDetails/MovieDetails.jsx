@@ -1,11 +1,17 @@
 import { getMovieDetails } from 'components/Api/ApiRequests';
-import { Suspense, useEffect, useState } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useLocation, useParams } from 'react-router-dom';
+import { HiArrowLeft } from 'react-icons/hi';
+import { ChosenMovie } from 'components/ChosenMovie/ChosenMovie';
+import { MovieInfo } from 'components/MovieInfo/MovieInfo';
+import css from './MovieDetails.module.css';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const { id } = useParams();
   const [movieDetails, setMovieDetails] = useState({});
   const [movieGenres, setMovieGenres] = useState([]);
+  const location = useLocation();
+  const backLink = location.state?.from ?? '/';
 
   const fetchMovieDetails = async id => {
     try {
@@ -16,32 +22,19 @@ export const MovieDetails = () => {
       console.log(err.message);
     }
   };
+
   useEffect(() => {
     fetchMovieDetails(id);
   }, []);
-  console.log(movieDetails);
 
   return (
     <main>
-      <img src={movieDetails.backdrop_path} alt={movieDetails.title} />
-      <h2>{movieDetails.title}</h2>
-      <p>User Score:</p>
-      <h3>Overview</h3>
-      <p>{movieDetails.overview}</p>
-      <h4>Genres</h4>
-      <p>{movieGenres.length && movieGenres.map(genre => genre.name)}</p>
-      <p>Additional information</p>
-      <ul>
-        <li key="cast">
-          <Link to="cast">Cast</Link>
-        </li>
-        <li key="reviews">
-          <Link to="reviews">Reviews</Link>
-        </li>
-      </ul>
-      <Suspense fallback={<div>Loading information...</div>}>
-        <Outlet />
-      </Suspense>
+      <Link className={css.backLink} to={backLink}>
+        <HiArrowLeft size="12" /> Go back
+      </Link>
+      <ChosenMovie movie={movieDetails} genres={movieGenres} />
+      <MovieInfo />
     </main>
   );
 };
+export default MovieDetails;

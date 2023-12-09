@@ -1,27 +1,15 @@
-import { lazy, useState } from 'react';
-import { getTrendingMovies } from './Api/ApiRequests';
+import { lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { SharedLayout } from './SharedLayout/SharedLayout';
-import { Home } from '../pages/Home/Home';
-import { NotFound } from './NotFound/NotFound';
-import { Movies } from 'pages/Movies/Movies';
-import { MovieDetails } from 'pages/MovieDetails/MovieDetails';
-import { Cast } from './Cast/Cast';
-import { Reviews } from './Reviews/Reviews';
-// const Home = lazy(() => import('./Home/Home'));
+
+const Home = lazy(() => import('../pages/Home/Home'));
+const NotFound = lazy(() => import('./NotFound/NotFound'));
+const Movies = lazy(() => import('pages/Movies/Movies'));
+const MovieDetails = lazy(() => import('pages/MovieDetails/MovieDetails'));
+const Cast = lazy(() => import('./Cast/Cast'));
+const Reviews = lazy(() => import('./Reviews/Reviews'));
 
 export const App = () => {
-  // const [variable, setVariable] = useState([]);
-
-  // const fetchApi = async () => {
-  //   try {
-  //     const movieTit = await getTrendingMovies();
-  //     setVariable(movieTit.results);
-  //   } catch (err) {
-  //     console.log(err.message);
-  //   }
-  // };
-
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
@@ -31,14 +19,6 @@ export const App = () => {
           <Route path="cast" element={<Cast />} />
           <Route path="reviews" element={<Reviews />} />
         </Route>
-        {/* <button type="button" onClick={fetchApi}>
-        FETCH
-      </button>
-      <ul>
-        {variable.map(varia => (
-          <li>{varia.title}</li>
-        ))}
-      </ul> */}
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

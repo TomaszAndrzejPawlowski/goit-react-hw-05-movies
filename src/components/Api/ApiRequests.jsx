@@ -14,8 +14,8 @@ export const getTrendingMovies = async () => {
   const resp = await axios.get(url, options);
   return resp;
 };
-//// FETCH SEARCHING MOVIE BY NAME ////
-export const getMovie = async query => {
+//// FETCH SEARCHING MOVIES BY NAME ////
+export const getMovies = async query => {
   const url = `${baseUrl}search/movie?query=${query}&include_adult=false&language=en-US`;
   const resp = await axios.get(url, options);
   return resp;
