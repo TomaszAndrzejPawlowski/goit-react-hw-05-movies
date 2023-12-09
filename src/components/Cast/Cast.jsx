@@ -18,7 +18,7 @@ const Cast = () => {
   };
   useEffect(() => {
     fetchMovieCredits(id);
-  }, []);
+  }, [id]);
 
   return (
     <div>

@@ -18,7 +18,7 @@ const Reviews = () => {
 
   useEffect(() => {
     fetchMovieCredits(id);
-  }, []);
+  }, [id]);
 
   return (
     <div>
