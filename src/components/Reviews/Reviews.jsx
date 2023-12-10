@@ -1,4 +1,4 @@
-import { getMovieReviews } from 'components/Api/ApiRequests';
+import { getMovieReviews } from 'Api/ApiRequests';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import propTypes from 'prop-types';

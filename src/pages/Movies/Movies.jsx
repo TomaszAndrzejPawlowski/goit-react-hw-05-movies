@@ -1,18 +1,18 @@
-import { getMovies } from 'components/Api/ApiRequests';
-import { useEffect, useRef, useState } from 'react';
+import { getMovies } from 'Api/ApiRequests';
+import { useEffect, useState } from 'react';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import propTypes from 'prop-types';
 import css from './Movies.module.css';
 
 const Movies = () => {
-  const inputRef = useRef();
   const [movies, setMovies] = useState([]);
   const [urlSearchParams, setUrlSearchParams] = useSearchParams();
   const urlQuery = urlSearchParams.get('query') || '';
   const location = useLocation();
 
-  const handleClick = () => {
-    setUrlSearchParams({ query: inputRef.current.value });
+  const handleSubmit = e => {
+    e.preventDefault();
+    setUrlSearchParams({ query: e.target.elements.input.value });
   };
 
   const fetchMovies = async query => {
@@ -30,15 +30,15 @@ const Movies = () => {
   return (
     <main>
       <div className={css.container}>
-        <input
-          ref={inputRef}
-          type="text"
-          autoComplete="off"
-          defaultValue={urlQuery}
-        />
-        <button type="submit" onClick={handleClick}>
-          Search
-        </button>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="input"
+            autoComplete="off"
+            defaultValue={urlQuery}
+          />
+          <button type="submit">Search</button>
+        </form>
         <ul>
           {movies.map(movie => (
             <li key={movie.id}>

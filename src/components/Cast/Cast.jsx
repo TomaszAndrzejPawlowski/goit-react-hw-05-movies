@@ -1,4 +1,4 @@
-import { getMovieCredits } from 'components/Api/ApiRequests';
+import { getMovieCredits } from 'Api/ApiRequests';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import css from './Cast.module.css';

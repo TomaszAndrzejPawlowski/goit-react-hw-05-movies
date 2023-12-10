@@ -1,4 +1,4 @@
-import { getMovieDetails } from 'components/Api/ApiRequests';
+import { getMovieDetails } from 'Api/ApiRequests';
 import { useEffect, useState } from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { HiArrowLeft } from 'react-icons/hi';

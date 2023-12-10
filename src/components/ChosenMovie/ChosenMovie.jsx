@@ -7,11 +7,15 @@ export const ChosenMovie = (movie, genres) => {
       {movie.movie.id !== undefined && (
         <div className={css.movieContainer}>
           <div>
-            <img
-              className={css.moviePoster}
-              src={`https://image.tmdb.org/t/p/w300${movie.movie.poster_path}`}
-              alt={movie.movie.title}
-            />
+            {movie.movie.poster_path ? (
+              <img
+                className={css.moviePoster}
+                src={`https://image.tmdb.org/t/p/w300${movie.movie.poster_path}`}
+                alt={movie.movie.title}
+              />
+            ) : (
+              <p>No poster provided.</p>
+            )}
           </div>
           <div>
             <h2>

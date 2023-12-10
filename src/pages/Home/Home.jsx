@@ -1,4 +1,4 @@
-import { getTrendingMovies } from 'components/Api/ApiRequests';
+import { getTrendingMovies } from 'Api/ApiRequests';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import propTypes from 'prop-types';
